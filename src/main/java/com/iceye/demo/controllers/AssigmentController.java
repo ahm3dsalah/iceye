@@ -8,12 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 
-@Controller
+@RestController
 @RequestMapping("assignment")
 public class AssigmentController {
 
@@ -21,7 +22,7 @@ public class AssigmentController {
     @Autowired
     RestClient restClient;
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody List<ResponseModel> serve(){
+    public List<ResponseModel> serve(){
         List<ResponseModel> responseList =  restClient.fetchData();
         List<ResponseModel> reversed = responseList.stream().
                 map(model -> ReverseHelper.reverse(model)).collect(Collectors.toList());
