@@ -3,6 +3,7 @@ package com.iceye.demo.controllers;
 import com.iceye.demo.exceptions.InvalidURLException;
 import com.iceye.demo.model.IngestRequestModel;
 import com.iceye.demo.model.IngestResponseModel;
+import com.iceye.demo.utils.FileLocator;
 import com.iceye.demo.utils.ImageGenerator;
 import com.iceye.demo.utils.ResourceReader;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -27,13 +28,18 @@ public class IngestController {
 
     @Autowired
     ResourceReader resourceReader;
+
+    @Autowired
+    FileLocator fileLocator;
     @RequestMapping(path = "ingest", method = RequestMethod.POST)
     public IngestResponseModel ingest(@RequestBody IngestRequestModel ingestRequestModel){
-        int length = 10;
-        boolean useLetters = true;
-        boolean useNumbers = false;
-        String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
+
+        // generate random file name
+        String generatedString = RandomStringUtils.random(10, true, false);
+
+
         imageGenerator.createImage(ingestRequestModel.getMessage(), generatedString);
+
         IngestResponseModel responseModel = new IngestResponseModel();
         responseModel.setDownloadUrl(resourceReader.getBaseDownloadUrl()+generatedString);
         return responseModel;
@@ -42,21 +48,14 @@ public class IngestController {
     @RequestMapping(path = "/download/{fileName}", method = RequestMethod.GET)
     public ResponseEntity<Resource> download(@PathVariable String fileName){
 
-        File file = new File("/home/ahmed/MyWorkSpace/iceye/demo/"+fileName+".png");
-        try {
-            InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
-
+            InputStreamResource resource = fileLocator.loadFile(fileName);
             HttpHeaders headers = new HttpHeaders();
             headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
             headers.add("Pragma", "no-cache");
             headers.add("Expires", "0");
             return ResponseEntity.ok()
                     .headers(headers)
-                    .contentLength(file.length())
                     .contentType(MediaType.APPLICATION_OCTET_STREAM)
                     .body(resource);
-        } catch (FileNotFoundException fne){
-            throw new InvalidURLException();
-        }
     }
 }
