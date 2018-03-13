@@ -9,6 +9,15 @@ public class ResourceReader {
 
     private String uri;
     private String baseDownloadUrl;
+    private String fileRepository;
+
+    public String getFileRepository() {
+        return fileRepository;
+    }
+
+    public void setFileRepository(String fileRepository) {
+        this.fileRepository = fileRepository;
+    }
 
     public String getBaseDownloadUrl() {
         return baseDownloadUrl;

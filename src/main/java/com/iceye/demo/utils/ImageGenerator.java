@@ -1,7 +1,6 @@
 package com.iceye.demo.utils;
 
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
@@ -13,7 +12,9 @@ import java.io.IOException;
 @Service
 public class ImageGenerator {
 
-    @Async
+    @Autowired
+    ResourceReader resourceReader;
+
     public void createImage(String text, String fileName) {
         BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = img.createGraphics();
@@ -40,9 +41,7 @@ public class ImageGenerator {
         g2d.drawString(text, 0, fm.getAscent());
         g2d.dispose();
         try {
-            String current = new java.io.File( "." ).getCanonicalPath();
-            System.out.println("Current dir:"+current);
-            ImageIO.write(img, "png", new File(fileName+".png"));
+            ImageIO.write(img, "png", new File(resourceReader.getFileRepository()+fileName+".png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

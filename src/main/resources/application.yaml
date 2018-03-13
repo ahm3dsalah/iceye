@@ -3,3 +3,4 @@ server:
 resources:
   uri: https://jsonplaceholder.typicode.com/posts?lipi=urn%3Ali%3Apage%3Ad_flagship3_messaging%3BvhLVSfVYRiGHSbF0jsdBDw%3D%3D
   baseDownloadUrl: http://localhost:8080/download/
+  fileRepository: /home/ahmed/resources/

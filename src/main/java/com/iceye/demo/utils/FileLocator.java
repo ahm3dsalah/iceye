@@ -1,6 +1,7 @@
 package com.iceye.demo.utils;
 
 import com.iceye.demo.exceptions.InvalidURLException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,10 @@ import java.io.FileNotFoundException;
 @Component
 public class FileLocator {
 
+    @Autowired
+    ResourceReader resourceReader;
     public InputStreamResource loadFile(String fileName) {
-        File file = new File("/home/ahmed/MyWorkSpace/iceye/demo/"+fileName+".png");
+        File file = new File(resourceReader.getFileRepository()+fileName+".png");
 
         try {
 
@@ -21,6 +24,7 @@ public class FileLocator {
 
             return resource;
         } catch (FileNotFoundException fne){
+            fne.printStackTrace();
             throw new InvalidURLException();
         }
 
