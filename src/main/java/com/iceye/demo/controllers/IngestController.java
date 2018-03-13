@@ -1,5 +1,6 @@
 package com.iceye.demo.controllers;
 
+import com.iceye.demo.exceptions.InvalidURLException;
 import com.iceye.demo.model.IngestRequestModel;
 import com.iceye.demo.model.IngestResponseModel;
 import com.iceye.demo.utils.ImageGenerator;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +33,6 @@ public class IngestController {
         boolean useLetters = true;
         boolean useNumbers = false;
         String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
-
-        String randomFileName = "";
         imageGenerator.createImage(ingestRequestModel.getMessage(), generatedString);
         IngestResponseModel responseModel = new IngestResponseModel();
         responseModel.setDownloadUrl(resourceReader.getBaseDownloadUrl()+generatedString);
@@ -53,11 +53,10 @@ public class IngestController {
             return ResponseEntity.ok()
                     .headers(headers)
                     .contentLength(file.length())
-                    .contentType(org.springframework.http.MediaType.APPLICATION_OCTET_STREAM)
+                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
                     .body(resource);
         } catch (FileNotFoundException fne){
-            fne.printStackTrace();
-            return null;
+            throw new InvalidURLException();
         }
     }
 }
