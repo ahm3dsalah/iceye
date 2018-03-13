@@ -8,6 +8,15 @@ import org.springframework.stereotype.Component;
 public class ResourceReader {
 
     private String uri;
+    private String baseDownloadUrl;
+
+    public String getBaseDownloadUrl() {
+        return baseDownloadUrl;
+    }
+
+    public void setBaseDownloadUrl(String baseDownloadUrl) {
+        this.baseDownloadUrl = baseDownloadUrl;
+    }
 
     public String getUri() {
         return uri;
