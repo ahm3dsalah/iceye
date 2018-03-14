@@ -7,9 +7,9 @@ public class ErrorResponse {
     private String error;
 
     /** The status. */
-    private String status;
+    private int status;
 
-    public ErrorResponse(String description, String error, String status) {
+    public ErrorResponse(String description, String error, int status) {
         this.description = description;
         this.error = error;
         this.status = status;
@@ -31,11 +31,11 @@ public class ErrorResponse {
         this.error = error;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 }

@@ -24,7 +24,7 @@ public class FileLocator {
 
             return resource;
         } catch (FileNotFoundException fne){
-            fne.printStackTrace();
+            //fne.printStackTrace();
            // throw new ICEyeCustomException();
             throw ICEyeErrors.FILE_NOT_FOUND.buildException();
         }

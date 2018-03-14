@@ -23,7 +23,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
         final ICEyeErrors icEyeErrors = exception.getIceyeErrors();
         final ErrorResponse errorResponse = new ErrorResponse(icEyeErrors.getDescription(),
                 icEyeErrors.name(),
-                icEyeErrors.getHttpStatus().name());
+                icEyeErrors.getHttpStatus().value());
 
         return new ResponseEntity<ErrorResponse>(errorResponse, icEyeErrors.getHttpStatus());
     }
