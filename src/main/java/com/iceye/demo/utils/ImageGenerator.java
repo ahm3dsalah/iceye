@@ -17,6 +17,7 @@ public class ImageGenerator {
     @Autowired
     PropertiesHolder propertiesHolder;
 
+
     @Async
     public void createImage(String text, String fileName) {
         BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
