@@ -1,10 +1,10 @@
 package com.iceye.demo.utils;
 
-import com.iceye.demo.exceptions.InvalidURLException;
+import com.iceye.demo.exceptions.ICEyeCustomException;
+import com.iceye.demo.exceptions.ICEyeErrors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,7 +25,8 @@ public class FileLocator {
             return resource;
         } catch (FileNotFoundException fne){
             fne.printStackTrace();
-            throw new InvalidURLException();
+           // throw new ICEyeCustomException();
+            throw ICEyeErrors.FILE_NOT_FOUND.buildException();
         }
 
     }

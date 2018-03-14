@@ -1,6 +1,5 @@
 package com.iceye.demo.controllers;
 
-import com.iceye.demo.exceptions.InvalidURLException;
 import com.iceye.demo.model.IngestRequestModel;
 import com.iceye.demo.model.IngestResponseModel;
 import com.iceye.demo.utils.FileLocator;
