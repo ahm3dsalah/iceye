@@ -4,7 +4,7 @@ import com.iceye.demo.model.IngestRequestModel;
 import com.iceye.demo.model.IngestResponseModel;
 import com.iceye.demo.utils.FileLocator;
 import com.iceye.demo.utils.ImageGenerator;
-import com.iceye.demo.utils.ResourceReader;
+import com.iceye.demo.utils.PropertiesHolder;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -21,7 +21,7 @@ public class IngestController {
     ImageGenerator imageGenerator;
 
     @Autowired
-    ResourceReader resourceReader;
+    PropertiesHolder propertiesHolder;
 
     @Autowired
     FileLocator fileLocator;
@@ -35,7 +35,7 @@ public class IngestController {
         imageGenerator.createImage(ingestRequestModel.getMessage(), generatedString);
 
         IngestResponseModel responseModel = new IngestResponseModel();
-        responseModel.setDownloadUrl(resourceReader.getBaseDownloadUrl()+generatedString);
+        responseModel.setDownloadUrl(propertiesHolder.getBaseDownloadUrl()+generatedString);
         return responseModel;
     }
 

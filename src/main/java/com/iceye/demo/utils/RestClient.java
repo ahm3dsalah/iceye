@@ -17,7 +17,7 @@ public class RestClient {
 
 
     @Autowired
-    ResourceReader resourceReader;
+    PropertiesHolder propertiesHolder;
 
     public List<ResponseModel> fetchData() {
         restTemplate = new RestTemplate();
@@ -27,7 +27,7 @@ public class RestClient {
 
 
         try {
-            ResponseEntity<List<ResponseModel>> rateResponse = restTemplate.exchange(resourceReader.getUri(), HttpMethod.GET, null, new ParameterizedTypeReference<List<ResponseModel>>() {});
+            ResponseEntity<List<ResponseModel>> rateResponse = restTemplate.exchange(propertiesHolder.getUri(), HttpMethod.GET, null, new ParameterizedTypeReference<List<ResponseModel>>() {});
             responseList = rateResponse.getBody();
             return responseList;
         } catch (Exception exp) {

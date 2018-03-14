@@ -13,7 +13,7 @@ import java.io.IOException;
 public class ImageGenerator {
 
     @Autowired
-    ResourceReader resourceReader;
+    PropertiesHolder propertiesHolder;
 
     public void createImage(String text, String fileName) {
         BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
@@ -41,7 +41,7 @@ public class ImageGenerator {
         g2d.drawString(text, 0, fm.getAscent());
         g2d.dispose();
         try {
-            ImageIO.write(img, "png", new File(resourceReader.getFileRepository()+fileName+".png"));
+            ImageIO.write(img, "png", new File(propertiesHolder.getFileRepository()+fileName+".png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

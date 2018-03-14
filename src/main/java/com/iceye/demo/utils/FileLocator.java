@@ -1,6 +1,5 @@
 package com.iceye.demo.utils;
 
-import com.iceye.demo.exceptions.ICEyeCustomException;
 import com.iceye.demo.exceptions.ICEyeErrors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -14,9 +13,9 @@ import java.io.FileNotFoundException;
 public class FileLocator {
 
     @Autowired
-    ResourceReader resourceReader;
+    PropertiesHolder propertiesHolder;
     public InputStreamResource loadFile(String fileName) {
-        File file = new File(resourceReader.getFileRepository()+fileName+".png");
+        File file = new File(propertiesHolder.getFileRepository()+fileName+".png");
 
         try {
 
@@ -24,8 +23,6 @@ public class FileLocator {
 
             return resource;
         } catch (FileNotFoundException fne){
-            //fne.printStackTrace();
-           // throw new ICEyeCustomException();
             throw ICEyeErrors.FILE_NOT_FOUND.buildException();
         }
 

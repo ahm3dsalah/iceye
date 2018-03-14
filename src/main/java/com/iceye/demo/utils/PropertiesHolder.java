@@ -3,9 +3,9 @@ package com.iceye.demo.utils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@ConfigurationProperties(prefix = "resources")
+@ConfigurationProperties(prefix = "customproperties")
 @Component
-public class ResourceReader {
+public class PropertiesHolder {
 
     private String uri;
     private String baseDownloadUrl;
