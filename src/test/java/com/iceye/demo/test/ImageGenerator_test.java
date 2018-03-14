@@ -36,10 +36,10 @@ public class ImageGenerator_test {
     @Test
     public void createImage_success() {
         try {
+            Thread.sleep(2000);
             File file = new File(propertiesHolder.getFileRepository() + FILE_NAME + FILE_EXTENSION);
             boolean fileFound = file.exists();
             Assert.assertTrue(fileFound);
-            Thread.sleep(2000);
         } catch (Exception e) {
 
         }
