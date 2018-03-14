@@ -1,6 +1,7 @@
 package com.iceye.demo.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
@@ -15,6 +16,7 @@ public class ImageGenerator {
     @Autowired
     PropertiesHolder propertiesHolder;
 
+    @Async
     public void createImage(String text, String fileName) {
         BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = img.createGraphics();
