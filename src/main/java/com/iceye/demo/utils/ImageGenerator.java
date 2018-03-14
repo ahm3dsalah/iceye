@@ -1,5 +1,6 @@
 package com.iceye.demo.utils;
 
+import com.iceye.demo.exceptions.ICEyeErrors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class ImageGenerator {
         try {
             ImageIO.write(img, "png", new File(propertiesHolder.getFileRepository()+fileName+".png"));
         } catch (IOException ex) {
-            ex.printStackTrace();
+            throw ICEyeErrors.IMAGE_CREATION_FAILED.buildException();
         }
     }
 }

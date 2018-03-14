@@ -6,7 +6,9 @@ public enum ICEyeErrors {
 
 
 
-    FILE_NOT_FOUND(HttpStatus.NOT_FOUND, "file not found");
+    FILE_NOT_FOUND(HttpStatus.NOT_FOUND, "file not found"),
+
+    IMAGE_CREATION_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "failed to create image");
 
 
     private HttpStatus httpStatus;
