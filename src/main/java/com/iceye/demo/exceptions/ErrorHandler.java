@@ -16,7 +16,7 @@ import java.io.FileNotFoundException;
 @ControllerAdvice
 public class ErrorHandler extends ResponseEntityExceptionHandler {
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(InvalidURLException.class)
     protected void handleInvalidUrlException(InvalidURLException ex) {
     }
