@@ -4,12 +4,13 @@ setup application localy
 1- git clone https://github.com/ahm3dsalah/iceye.git
 2- change the location of file saving which is the location the app store generated images in Yaml file 
 
-2- run mvn clean install
-3- java -jar demo-0.0.1-SNAPSHOT.jar in target file
-4- url 
+3- run mvn clean install
+4- java -jar demo-0.0.1-SNAPSHOT.jar in target file
+5- url 
 http://localhost:8080/ingest with POST content => {
     "message":"asdfasdfasdfasdfasd"
 }
+you will get download url to get the image
 
 http://localhost:8080/assignment
 
