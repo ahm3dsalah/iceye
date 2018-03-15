@@ -1,1 +1,19 @@
 
+setup application localy
+
+1- git clone https://github.com/ahm3dsalah/iceye.git
+2- change the location of file saving which is the location the app store generated images in Yaml file 
+
+2- run mvn clean install
+3- java -jar demo-0.0.1-SNAPSHOT.jar in target file
+4- url 
+http://localhost:8080/ingest with POST content => {
+    "message":"asdfasdfasdfasdfasd"
+}
+
+http://localhost:8080/assignment
+
+I deployed on Heroku 
+  https://iceye-demo.herokuapp.com/assignment
+  couldnt setup the second call since it needs local storage on Heroku but free service wasnt reliable
+  
